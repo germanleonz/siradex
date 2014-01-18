@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+	<form-bean
+		name="LoginForm"
+		type="org.apache.struts.validator.DynaValidatorForm">
+		<form-property name="usbid" type="java.lang.String"/>
+		<form-property name="contrasena" type="java.lang.String"/>
+    	</form-bean>
+	<!-- Forms de usuarios -->
+	<form-bean
+		name="RegistrarActividadForm"
+		type="infosis.siradex.forms.RegistrarActividadForm">
+	</form-bean>
+	<form-bean
+		name="GestionarActividadesForm"
+		type="org.apache.struts.action.DynaActionForm">
+                            <form-property name="id_act" type="java.lang.String" />
+	</form-bean>
+
+	<!-- Forms de personal del DEX-->
+	<form-bean
+		name="GestionarTipoActividadesForm"
+		type="infosis.siradex.forms.GestionarTipoActividadesForm">
+	</form-bean>
+	<form-bean
+		name="EliminarTipoActividadForm"
+		type="infosis.siradex.forms.EliminarTipoActividadForm">
+	</form-bean>
+	<form-bean
+		name="CrearTipoActividadForm"
+		type="infosis.siradex.forms.CrearTipoActividadForm">
+	</form-bean>
+
+	<!-- Forms de root -->
+	<form-bean
+		name="GestionarCatalogosForm"
+		type="infosis.siradex.forms.GestionarCatalogosForm">
+	</form-bean>
+	<form-bean
+		name="CrearCatalogoForm"
+		type="infosis.siradex.forms.CrearCatalogoForm">
+	</form-bean>
+	<form-bean
+		name="GestionarUsuariosForm"
+		type="infosis.siradex.forms.GestionarUsuariosForm">
+	</form-bean>
+	<form-bean
+		name="CrearUsuarioForm"
+		type="org.apache.struts.validator.DynaValidatorForm">
+		<form-property name="usbid" type="java.lang.String"/>
+		<form-property name="contrasena1" type="java.lang.String"/>
+		<form-property name="contrasena2" type="java.lang.String"/>
+		<form-property name="nombre" type="java.lang.String"/>
+		<form-property name="apellido" type="java.lang.String"/>
+		<form-property name="email" type="java.lang.String"/>
+		<form-property name="rol" type="java.lang.String"/>
+	</form-bean>
+	<form-bean 
+		name="ModificarUsuarioForm"
+		type="org.apache.struts.validator.DynaValidatorForm">
+		<form-property name="usbid" type="java.lang.String"/>
+		<form-property name="nombre" type="java.lang.String"/>
+		<form-property name="apellido" type="java.lang.String"/>
+		<form-property name="email" type="java.lang.String"/>
+		<form-property name="rol" type="java.lang.String"/>
+	</form-bean>
+              <form-bean
+                            name="ModificarActividadForm"
+                            type="infosis.siradex.forms.ModificarActividadForm">
+              </form-bean>
+    </form-beans>
+    
+    <global-exceptions>
+    
+    </global-exceptions>
+
+    <global-forwards>
+	<forward name="volver" path="/login.jsp"/>
+    </global-forwards>
+
+    <action-mappings>
+	<!-- Acciones publicas -->
+        <action
+		input="/login.jsp"
+		name="LoginForm"
+		path="/login"
+		type="infosis.siradex.LoginAction"
+		scope="session"
+		validate="true">
+		<forward name="failure" path="/login.jsp"/>
+		<forward name="root" path="/root/index.jsp"/>
+		<forward name="coordinador" path="/Coordinador/index.jsp"/>
+		<forward name="administrador" path="/Administrador/index.jsp"/>
+		<forward name="usuario" path="/Usuario/index.jsp"/>
+	</action>
+
+	<!-- Acciones de Usuario (comunidad USB) -->
+	<action
+		input="/Usuario/index.jsp"
+		path="/UsuarioLinks"
+		parameter="method"
+		type="infosis.siradex.UsuarioLinks"
+		scope="request">
+		<forward name="listar_opciones" path="/Usuario/index.jsp"/>
+		<forward name="gestionar_actividades" path="/Usuario/gestionar_actividades.do"/>
+		<forward name="actualizar_perfil" path="/Usuario/actualizar_perfil.jsp"/>
+		<forward name="solicitar_constancia" path="/Usuario/solicitar_constancia.jsp"/>
+		<forward name="cerrar_sesion" path="/login.jsp"/>
+	</action>
+	<action
+		path="/*/gestionar_actividades"
+		input="/{1}/gestionar_actividades.jsp"
+		name="GestionarActividadesForm"
+		type="infosis.siradex.GestionarActividadesAction"
+		scope="request"
+		validate="false">
+		<forward name="listar_actividades" path="/{1}/gestionar_actividades.jsp"/>
+		<forward name="detalle_actividad" path="/{1}/detalle_actividad.jsp"/>
+		<forward name="modificar_actividad" path="/{1}/modificar_actividad.jsp"/>
+	</action>
+	<action
+		path="/*/modificar_actividad"
+		input="/{1}/modificar_actividad.jsp"
+		name="ModificarActividadForm"
+		type="infosis.siradex.ModificarActividadAction"
+		scope="request"
+		validate="false">
+		<forward name="modificacion_hecha" path="/{1}/gestionar_actividades.do"/>
+	</action>
+
+	<action
+		path="/*/registrar_actividad" 
+		input="/{1}/registrar_actividad.jsp"
+		name="RegistrarActividadForm"
+		scope="request"
+		type="infosis.siradex.RegistrarActividadAction" 
+		validate="false">
+		<forward name="tipo_elegido" path="/{1}/registrar_actividad.jsp"/>
+		<forward name="creacion_actividad_correcta" path="/{1}/index.jsp"/>
+	</action>
+	<action
+		path="/*/actualizar_perfil" 
+		input="/{1}/actualizar_perfil.jsp"
+		name="ActualizarPerfilForm"
+		scope="request"
+		type="infosis.siradex.ActualizarPerfilAction" 
+		validate="false">
+		<forward name="actualizacion_correcta" path="/{1}/index.jsp"/>
+	</action>
+	<action
+		path="/*/solicitar_constancia" 
+		input="/{1}/solicitar_constancia.jsp"
+		name="SolicitarConstanciaForm"
+		scope="request"
+		type="infosis.siradex.SolicitarConstanciaAction" 
+		validate="false">
+		<forward name="solicitud_correcta" path="/{1}/index.jsp"/>
+	</action>
+
+	<!-- Acciones de Administradores (Personal del DEX)-->	
+	<action
+		input="/Administrador/index.jsp"
+		path="/AdministradorLinks"
+		parameter="method"
+		type="infosis.siradex.AdministradorLinks"
+		scope="request">
+		<!-- Tipos de actividades -->
+		<forward name="gestionar_tipo_actividades" path="/Administrador/gestionar_tipo_actividades.do"/>
+		<forward name="especificar_roles" path="/Administrador/especificar_roles.jsp"/>
+		<forward name="especificar_fechas" path="/Administrador/especificar_fechas.jsp"/>
+		<forward name="busquedas_avanzadas" path="/Administrador/busquedas_avanzadas.jsp"/>
+		<forward name="gestionar_alertas" path="/Administrador/gestionar_alertas.jsp"/>
+		<forward name="importar_datos" path="/Administrador/importar_datos.jsp"/>
+		<!-- Actividades -->
+		<forward name="gestionar_actividades" path="/Usuario/gestionar_actividades.do"/>
+		<!-- Opciones generales -->
+		<forward name="listar_opciones" path="/Administrador/index.jsp"/>
+		<forward name="actualizar_perfil" path="/Administrador/actualizar_perfil.jsp"/>
+		<forward name="solicitar_constancia" path="/Administrador/solicitar_constancia.jsp"/>
+		<forward name="cerrar_sesion" path="/login.jsp"/>
+	</action>
+	<action
+		path="/*/gestionar_tipo_actividades"
+		input="/{1}/gestionar_tipo_actividades.jsp"
+		name="GestionarTipoActividadesForm" 
+		scope="session"
+		type="infosis.siradex.GestionarTipoActividadesAction"
+		validate="false">
+		<forward name="consulta_hecha" path="/{1}/gestionar_tipo_actividades.jsp"/>
+	</action>
+	<action
+		path="/*/crear_tipo_actividad" 
+		input="/{1}/crear_tipo_actividad.jsp"
+		name="CrearTipoActividadForm"
+		scope="request"
+		type="infosis.siradex.CrearTipoActividadAction" 
+		validate="true">
+		<forward name="creacion_tipo_act_correcta" path="/{1}/gestionar_tipo_actividades.do"/>
+		<forward name="agregar_campos" path="/{1}/crear_tipo_actividad.jsp"/>
+	</action>
+	<action
+		path="/*/eliminar_tipo_actividad"
+		input="/{1}/eliminar_tipo_actividad.jsp"
+		name="EliminarTipoActividadForm" 
+		scope="request" 
+		type="infosis.siradex.EliminarTipoActividadAction" 
+		validate="false">
+		<forward name="eliminacion_tipo_actividad_correcta" path="/{1}/eliminacion_tipo_act_correcta.jsp"/>
+	</action>
+	<!-- Accion del superusuario o administrador del Sistema -->
+	<action
+		input="/Root/index.jsp"
+		path="/RootLinks"
+		parameter="method"
+		type="infosis.siradex.RootLinks"
+		scope="request">
+		<!-- Opciones del super usuario -->
+		<forward name="gestionar_catalogos" path="/root/gestionar_catalogos.do"/>
+		<forward name="gestionar_usuarios" path="/root/gestionar_usuarios.do"/>
+		<forward name="gestionar_respaldos" path="/root/gestionar_respaldos.jsp"/>
+		<forward name="revisar_logs" path="/root/revisar_logs.jsp"/>
+		<!-- Opciones del personal del DEX -->
+		<forward name="gestionar_tipo_actividades" path="/root/gestionar_tipo_actividades.do"/>
+		<forward name="especificar_roles" path="/root/especificar_roles.jsp"/>
+		<forward name="especificar_fechas" path="/root/especificar_fechas.jsp"/>
+		<forward name="busquedas_avanzadas" path="/root/busquedas_avanzadas.jsp"/>
+		<forward name="gestionar_alertas" path="/root/gestionar_alertas.jsp"/>
+		<forward name="importar_datos" path="/root/importar_datos.jsp"/>
+		<!-- Opciones de la comunidad de la USB -->
+		<forward name="gestionar_actividades" path="/root/gestionar_actividades.do"/>
+		<forward name="actualizar_perfil" path="/root/actualizar_perfil.jsp"/>
+		<forward name="solicitar_constancia" path="/root/solicitar_constancia.jsp"/>
+		<!-- Opciones generales -->
+		<forward name="listar_opciones" path="/root/index.jsp"/>
+		<forward name="cerrar_sesion" path="/login.jsp"/>
+	</action>
+	<action 
+		input="/root/gestionar_catalogos.jsp" 
+		name="GestionarCatalogosForm"
+		path="/root/gestionar_catalogos" 
+		scope="session"
+		type="infosis.siradex.GestionarCatalogosAction">
+		<forward name="success" path="/root/listar_opciones.jsp"/>
+		<forward name="refrescar" path="/root/gestionar_catalogos.jsp"/>
+	</action>
+	<action 
+		input="/root/crear_catalogo.jsp" 
+		name="CrearCatalogoForm"
+		path="/root/crear_catalogo" 
+		scope="request"
+		validate="true"
+		type="infosis.siradex.CrearCatalogoAction">
+		<forward name="creacion_catalogo_correcta" path="/root/gestionar_catalogos.do"/>
+		<forward name="agregar_campos" path="/root/crear_catalogo.jsp"/>
+	</action>
+	<action
+		input="/root/gestionar_usuarios.jsp"
+		name="GestionarUsuariosForm"
+		path="/root/gestionar_usuarios"
+		scope="session"
+		type="infosis.siradex.GestionarUsuariosAction"
+		validate="false">
+		<forward name="consulta_hecha" path="/root/gestionar_usuarios.jsp"/>
+		<forward name="modificar_usuario" path="/root/modificar_usuario.do"/>
+	</action>
+	<action
+		input="/root/crear_usuario.jsp"
+		name="CrearUsuarioForm"
+		path="/root/crear_usuario"
+		scope="session"
+		type="infosis.siradex.CrearUsuarioAction"
+		validate="true">
+		<forward name="creacion_usuario_correcta" path="/root/gestionar_usuarios.do"/>
+	</action>
+	<action
+		input="/root/modificar_usuario.jsp"
+		name="ModificarUsuarioForm"
+		path="/root/modificar_usuario"
+		scope="session"
+		type="infosis.siradex.ModificarUsuarioAction"
+		validate="true">
+		<forward name="cargar_pagina" path="/root/modificar_usuario.jsp"/>
+		<forward name="modificacion_usuario_correcta" path="/root/gestionar_usuarios.do"/>
+	</action>
+
+<!--	<action 
+		input="/root/revisar_logs.jsp"
+		name="RevisarLogsForm"
+		scope="request"
+		type="infosis.siradex.RevisarLogsAction">
+	</action>
+	<action
+		input="/root/gestionar_respaldos.jsp"
+		name="GestionarRespaldosForm"
+		scope="request">
+		type="infosis.siradex.GestionarRespaldosAction">
+	</action>-->
+    </action-mappings>
+    
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="infosis.siradex.ApplicationResource"/>
+    
+    <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+
+ Paths found in Tiles definitions are relative to the main context.
+ -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin" >
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />      
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+    
+	<!-- ========================= Validator plugin ================================= -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property
+			property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+	</plug-in>
+</struts-config>

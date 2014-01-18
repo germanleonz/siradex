@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+
+<!--
+     This is a blank Tiles definition file with a commented example.
+-->
+
+<tiles-definitions>
+
+	<!-- Plantilla original -->
+	<definition name="plantillasiradex" path="/Tiles/plantilla.jsp">
+		<put name="titulo" value="Este es el titulo" type="string"/>
+		<put name="header" value="/Tiles/header.jsp"/>
+		<put name="leftColumn" value="/Tiles/leftcolumn.jsp"/>
+		<put name="body" value="/Tiles/body.jsp"/>
+		<put name="rightColumn" value="/Tiles/rightcolumn.jsp"/>
+		<put name="footer" value="/Tiles/footer.jsp"/>
+	</definition>
+
+	<definition name="login" extends="plantillasiradex">
+		<put name="titulo" value="SIRADEX" type="string"/>
+		<put name="body" value="/cuerpo_login.jsp"/>
+	</definition>
+
+	<!-- Plantillas de los usuarios de la comunidad -->
+
+	<definition name="index_usuario" extends="plantillasiradex">
+		<put name="titulo" value="Siradex - Inicio" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_index_usuario.jsp"/>
+	</definition>
+
+	<definition name="usuario.gestionar_actividades" extends="plantillasiradex">
+		<put name="titulo" value="Gestionar actividades" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_gestionar_actividades.jsp"/>
+	</definition>
+
+	<definition name="usuario.registrar_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Registrar actividad" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_registrar_actividad.jsp"/>
+	</definition>
+	<definition name="usuario.modificar_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Modificar actividad" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_modificar_actividad.jsp"/>
+	</definition>
+	<definition name="usuario.detalle_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Detalle actividad" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_detalle_actividad.jsp"/>
+	</definition>
+
+	<definition name="usuario.actualizar_perfil" extends="plantillasiradex">
+		<put name="titulo" value="Actualizar perfil" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_actualizar_perfil.jsp"/>
+	</definition>
+
+	<definition name="usuario.solicitar_constancia" extends="plantillasiradex">
+		<put name="titulo" value="Solicitar constancias" type="string"/>
+		<put name="leftColumn" value="/Usuario/content/opciones_usuario.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_solicitar_constancia.jsp"/>
+	</definition>
+
+	<!-- Plantillas del personal del DEX -->
+	<definition name="index_administrador" extends="plantillasiradex">
+		<put name="titulo" value="Pagina del administrador"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Administrador/content/cuerpo_index_administrador.jsp"/>
+	</definition>
+
+	<definition name="administrador.gestionar_tipo_actividades" extends="plantillasiradex">
+		<put name="titulo" value="Gestionar tipos de actividades" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Administrador/content/cuerpo_gestionar_tipo_actividades.jsp"/>
+	</definition>
+
+	<definition name="administrador.crear_tipo_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Crear tipo de actividad" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Administrador/content/cuerpo_crear_tipo_actividad.jsp"/>
+	</definition>
+
+	<definition name="administrador.gestionar_actividades" extends="plantillasiradex">
+		<put name="titulo" value="Gestionar actividades" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_gestionar_actividades.jsp"/>
+	</definition>
+
+	<definition name="administrador.registrar_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Registrar actividad" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_registrar_actividad.jsp"/>
+	</definition>
+	<definition name="administrador.modificar_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Modificar actividad" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_modificar_actividad.jsp"/>
+	</definition>
+	<definition name="administrador.detalle_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Detalle actividad" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_detalle_actividad.jsp"/>
+	</definition>
+
+	<definition name="administrador.actualizar_perfil" extends="plantillasiradex">
+		<put name="titulo" value="Actualizar perfil" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_actualizar_perfil.jsp"/>
+	</definition>
+
+	<definition name="administrador.solicitar_constancia" extends="plantillasiradex">
+		<put name="titulo" value="Solicitar constancias" type="string"/>
+		<put name="leftColumn" value="/Administrador/content/opciones_administrador.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_solicitar_constancia.jsp"/>
+	</definition>
+
+
+	<!-- Plantillas de coordinadores del DEX -->
+
+	<!-- Plantilla del super usuario del SIRADEX -->
+	<definition name="index_root" extends="plantillasiradex">
+		<put name="titulo" value="Pagina del super usuario"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/root/content/cuerpo_index_root.jsp"/>
+	</definition>
+
+	<definition name="root.gestionar_catalogos" extends="plantillasiradex">
+		<put name="titulo" value="Gestionar catalogos" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/root/content/cuerpo_gestionar_catalogos.jsp"/>
+	</definition>
+
+	<definition name="root.crear_catalogo" extends="plantillasiradex">
+		<put name="titulo" value="Crear catalogo" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/root/content/cuerpo_crear_catalogo.jsp"/>
+	</definition>
+
+	<definition name="root.gestionar_usuarios" extends="plantillasiradex">
+		<put name="titulo" value="Gestionar usuario" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/root/content/cuerpo_gestionar_usuarios.jsp"/>
+	</definition>
+
+	<definition name="root.crear_usuario" extends="plantillasiradex">
+		<put name="titulo" value="Crear usuario" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/root/content/cuerpo_crear_usuario.jsp"/>
+	</definition>
+	<definition name="root.modificar_usuario" extends="plantillasiradex">
+		<put name="titulo" value="Modificar usuario" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/root/content/cuerpo_modificar_usuario.jsp"/>
+	</definition>
+
+	<definition name="root.gestionar_tipo_actividades" extends="plantillasiradex">
+		<put name="titulo" value="Crear tipo de actividad" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Administrador/content/cuerpo_gestionar_tipo_actividades.jsp"/>
+	</definition>
+
+	<definition name="root.crear_tipo_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Crear tipo de actividad" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Administrador/content/cuerpo_crear_tipo_actividad.jsp"/>
+	</definition>
+
+	<definition name="root.gestionar_actividades" extends="plantillasiradex">
+		<put name="titulo" value="Gestionar actividades" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_gestionar_actividades.jsp"/>
+	</definition>
+
+	<definition name="root.registrar_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Registrar actividad" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_registrar_actividad.jsp"/>
+	</definition>
+	<definition name="root.modificar_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Registrar actividad" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_modificar_actividad.jsp"/>
+	</definition>
+	<definition name="root.detalle_actividad" extends="plantillasiradex">
+		<put name="titulo" value="Detalle actividad" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_detalle_actividad.jsp"/>
+	</definition>
+
+	<definition name="root.actualizar_perfil" extends="plantillasiradex">
+		<put name="titulo" value="Actualizar perfil" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_actualizar_perfil.jsp"/>
+	</definition>
+
+	<definition name="root.solicitar_constancia" extends="plantillasiradex">
+		<put name="titulo" value="Solicitar constancias" type="string"/>
+		<put name="leftColumn" value="/root/content/opciones_root.jsp"/>
+		<put name="body" value="/Usuario/content/cuerpo_solicitar_constancia.jsp"/>
+	</definition>
+
+
+    <!-- sample tiles definitions
+    <definition name=".mainLayout" path="/common/layouts/classicLayout.jsp">
+        <put name="title"  value="Sample Page Title" />
+        <put name="header" value="/common/header.jsp" />
+        <put name="menu"   value=".mainMenu" />
+        <put name="footer" value="/common/footer.jsp" />
+        <put name="body"   value=".portal.body" />
+    </definition>
+
+    <definition name=".mainMenu" path="/common/layouts/vboxLayout.jsp" >
+        <putList name="list" >
+            <add value=".menu.links" />
+            <add value=".menu.taglib.references" />
+            <add value=".menu.printer.friendly" />
+            <add value=".menu.old.documents" />
+      </putList>
+    </definition>
+
+    <definition name="aPage" extends=".mainLayout">
+        <put name="title"  value="Another Title" />
+        <put name="body"   value=".aPage.body" />
+    </definition>
+
+    end samples -->
+</tiles-definitions>
